@@ -25,7 +25,7 @@ GOOGLE_API_KEY=your_gemini_api_key_here
 ```
 4) Prepare your contacts spreadsheet (CSV or Excel). Keep the required columns and fill optional fields for better personalization. Avoid rows with missing emails; the generator will skip them.
 5) Obtain required keys:
-   - **Google Generative AI key (Gemini)**: Go to https://aistudio.google.com/app/apikey, create an API key, and copy it into `.env` as `GOOGLE_API_KEY`.
+   - **Google Generative AI key (Gemini)**: Go to https://cloud.google.com/, create an API key, and copy it into `.env` as `GOOGLE_API_KEY`.
    - **Gmail App Password**: In your Google Account > Security > 2-Step Verification > App passwords, generate a 16-character password for "Mail" on "Windows" (or any device). Use this App Password when prompted by the sender script. Regular Gmail passwords will fail.
 
 Generate outreach emails (apollo.py)
