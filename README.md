@@ -24,6 +24,9 @@ pip install pandas google-generativeai python-dotenv openpyxl
 GOOGLE_API_KEY=your_gemini_api_key_here
 ```
 4) Prepare your contacts spreadsheet (CSV or Excel). Keep the required columns and fill optional fields for better personalization. Avoid rows with missing emails; the generator will skip them.
+5) Obtain required keys:
+   - **Google Generative AI key (Gemini)**: Go to https://aistudio.google.com/app/apikey, create an API key, and copy it into `.env` as `GOOGLE_API_KEY`.
+   - **Gmail App Password**: In your Google Account > Security > 2-Step Verification > App passwords, generate a 16-character password for "Mail" on "Windows" (or any device). Use this App Password when prompted by the sender script. Regular Gmail passwords will fail.
 
 Generate outreach emails (apollo.py)
 ------------------------------------
@@ -39,6 +42,22 @@ python apollo.py
    - Generate a short company-specific subject and body per contact using Gemini (model `models/gemini-2.5-flash`).
    - Save results to `generated_emails.json` (for automation) and `generated_emails.txt` (for quick review).
 4) Optional: view a sample email when prompted.
+
+Change the sender name/title (apollo.py)
+----------------------------------------
+The default template introduces **Parth Sethi, Executive Head**. To change the sender identity for another user:
+- Quick run-time change: When asked "Do you want to customize the email template?", answer `yes` and paste a new template that uses your own name/title. Example:
+  ```
+  Respected $TITLE $LAST_NAME,
+
+  I am Your Name, Your Role at 180 Degrees Consulting, IIT Kharagpur. $EMAIL_BODY
+
+  Best regards,
+  Your Name
+  Your Role
+  180 Degrees Consulting, IIT Kharagpur
+  ```
+- Permanent change: Edit `default_template_info["template"]` (and optionally `description`/`key_points`) near the top of `apollo.py` to set new defaults before running.
 
 Output format (generated_emails.json)
 -------------------------------------
